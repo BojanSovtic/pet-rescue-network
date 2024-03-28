@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-
+import { AngularMaterialModule } from "./angular-material/angular-material.module";
 
 @NgModule({
   declarations: [
@@ -9,7 +9,8 @@ import { CommonModule } from "@angular/common";
   ],
   imports: [CommonModule],
   exports: [
-    CommonModule
+    CommonModule,
+    AngularMaterialModule
   ],
   providers: []
 })

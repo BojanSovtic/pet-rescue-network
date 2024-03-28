@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="card-header">
+    <div class="example-header-image"></div>
+    <h5 class="card-title">{{ pet.name }}</h5>
+  </div>
+  <img
+    class="card-img-top max-h-30 max-w-48"
+    [src]="pet.imageURL"
+    [alt]="pet.name"
+  />
+  <div class="card-body">
+    <p class="card-text">
+      {{ pet.description }}
+    </p>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-primary">LIKE</button>
+    <button class="btn btn-secondary">SHARE</button>
+  </div>
+</div>

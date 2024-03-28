@@ -1,0 +1,21 @@
+
+.container-fluid {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.router-outlet-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-top: 112px;
+  padding-right: 16px;
+}
