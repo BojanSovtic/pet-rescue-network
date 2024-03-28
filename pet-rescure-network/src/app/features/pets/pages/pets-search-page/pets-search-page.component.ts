@@ -1,56 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription, map } from 'rxjs';
 
 import { Pet } from '../../../../shared/models/pet.model';
+import { Store } from '@ngrx/store';
+import * as fromApp from './../../../../store/app.reducer';
+import * as PetsActions from '../../store/pets.actions'
 
 @Component({
   selector: 'app-pets-search-page',
   templateUrl: './pets-search-page.component.html',
   styleUrls: [],
 })
-export class PetsSearchPage {
-  pets: Pet[] = [{
-    id: 1,
-    name: "Marko",
-    description: "Lepotan",
-    imageURL: 'https://cdn.pixabay.com/photo/2017/09/25/13/12/puppy-2785074_1280.jpg'
-  },
-  {
-    id: 2,
-    name: "Marko 2",
-    description: "Lepotan",
-    imageURL: 'https://cdn.pixabay.com/photo/2017/09/25/13/12/puppy-2785074_1280.jpg'
-  },
-  {
-    id: 3,
-    name: "Marko 3",
-    description: "Lepotan",
-    imageURL: 'https://cdn.pixabay.com/photo/2017/09/25/13/12/puppy-2785074_1280.jpg'
-  },
-  {
-    id: 4,
-    name: "Marko 4",
-    description: "Lepotan",
-    imageURL: 'https://cdn.pixabay.com/photo/2017/09/25/13/12/puppy-2785074_1280.jpg'
-  },
-  {
-    id: 5,
-    name: "Marko 5",
-    description: "Lepotan",
-    imageURL: 'https://cdn.pixabay.com/photo/2017/09/25/13/12/puppy-2785074_1280.jpg'
-  },
-  {
-    id: 6,
-    name: "Marko 6",
-    description: "Lepotan",
-    imageURL: 'https://cdn.pixabay.com/photo/2017/09/25/13/12/puppy-2785074_1280.jpg'
-  },
-  {
-    id: 7,
-    name: "Marko 7",
-    description: "Lepotan",
-    imageURL: 'https://cdn.pixabay.com/photo/2017/09/25/13/12/puppy-2785074_1280.jpg'
-  }]
+export class PetsSearchPage implements OnInit, OnDestroy {
+  pets: Pet[] = [];
+  private petsSub!: Subscription;
 
-  constructor() { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
+  ngOnInit() {
+    this.petsSub = this.store.select('pets')
+      .pipe(map(petsState => petsState.pets))
+      .subscribe((pets: Pet[]) => {
+        this.pets = pets;
+      });
+    this.store.dispatch(PetsActions.fetchPets())
+  }
+
+  ngOnDestroy() {
+    this.petsSub.unsubscribe()
+  }
 }
