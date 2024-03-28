@@ -5,11 +5,13 @@ import { PetsSearchPage } from "./pages/pets-search-page/pets-search-page.compon
 import { PetsRoutingModule } from "./pets-routing.module";
 import { SharedModule } from "../../shared/shared.module";
 import { PetCard } from "./pages/pets-search-page/pet-card/pet-card.component";
+import { PetDetails } from "./pages/pet-details/pet-details.component";
 
 @NgModule({
   declarations: [
     PetsSearchPage,
-    PetCard
+    PetCard,
+    PetDetails
   ],
   imports: [
     CommonModule,

@@ -2,7 +2,10 @@
   <div class="row justify-content-center">
     <div *ngFor="let pet of pets" class="col-md-4 mb-4">
       <div class="card">
-        <app-pet-card [pet]="pet"></app-pet-card>
+        <app-pet-card
+          [pet]="pet"
+          (selectPet)="selectPet($event)"
+        ></app-pet-card>
       </div>
     </div>
   </div>

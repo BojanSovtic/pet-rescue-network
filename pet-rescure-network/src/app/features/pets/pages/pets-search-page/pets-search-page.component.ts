@@ -5,6 +5,7 @@ import { Pet } from '../../../../shared/models/pet.model';
 import { Store } from '@ngrx/store';
 import * as fromApp from './../../../../store/app.reducer';
 import * as PetsActions from '../../store/pets.actions'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pets-search-page',
@@ -15,7 +16,7 @@ export class PetsSearchPage implements OnInit, OnDestroy {
   pets: Pet[] = [];
   private petsSub!: Subscription;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<fromApp.AppState>, private router: Router) { }
 
   ngOnInit() {
     this.petsSub = this.store.select('pets')
@@ -28,5 +29,9 @@ export class PetsSearchPage implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.petsSub.unsubscribe()
+  }
+
+  selectPet(petId: string) {
+    this.router.navigate([`/pets/${petId}`])
   }
 }

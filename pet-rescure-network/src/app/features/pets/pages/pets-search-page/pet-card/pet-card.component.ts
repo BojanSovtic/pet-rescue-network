@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Pet } from '../../../../../shared/models/pet.model';
 
 @Component({
@@ -7,4 +7,9 @@ import { Pet } from '../../../../../shared/models/pet.model';
 })
 export class PetCard {
   @Input() pet!: Pet;
+  @Output() selectPet = new EventEmitter<string>();
+
+  setSelectedPet() {
+    this.selectPet.emit(this.pet.id)
+  }
 }

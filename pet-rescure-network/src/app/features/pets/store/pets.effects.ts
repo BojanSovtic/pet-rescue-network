@@ -22,6 +22,18 @@ export class PetsEffects {
     )
   );
 
+  fetchPetById$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PetActions.FETCH_PET),
+      switchMap((action: { petId: string }) =>
+        this.http.get<Pet>(`${environment.firebaseBaseUrl}/pets/${action.petId}.json`).pipe(
+          map((pet: Pet) => PetActions.selectPet({ pet }))
+        )
+      )
+    )
+  );
+
+
   constructor(
     private actions$: Actions,
     private http: HttpClient,
