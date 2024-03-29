@@ -25,9 +25,6 @@ export const petResolver: ResolveFn<Pet | null> = (
     filter((selectedPet) => {
       return !!selectedPet
     }),
-    take(1),
-    catchError((error) => {
-      return of(null);
-    })
+    take(1)
   );
 }

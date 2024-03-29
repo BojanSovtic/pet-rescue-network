@@ -36,7 +36,6 @@ export class PetsEffects {
 
   deletePet$ = createEffect(() => this.actions$.pipe(
     ofType(PetActions.DELETE_PET),
-    tap(action => console.log('Deleting pet action:', action)),
     switchMap(((action: { pet: Pet }) =>
       this.http.delete<Pet>(`${environment.firebaseBaseUrl}/pets/${action.pet.id}.json`).pipe(
         switchMap(() => of(PetActions.deletePetSuccess({ pet: action.pet }))),

@@ -32,6 +32,6 @@ export class PetsSearchPage implements OnInit, OnDestroy {
   }
 
   selectPet(petId: string) {
-    this.router.navigate([`/pets/${petId}`])
+    this.router.navigate([`/pets/detail/${petId}`])
   }
 }

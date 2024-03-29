@@ -5,13 +5,15 @@ import { PetsSearchPage } from "./pages/pets-search-page/pets-search-page.compon
 import { PetsRoutingModule } from "./pets-routing.module";
 import { SharedModule } from "../../shared/shared.module";
 import { PetCard } from "./pages/pets-search-page/pet-card/pet-card.component";
-import { PetDetails } from "./pages/pet-details/pet-details.component";
+import { PetDetails } from "./pages/pet-details-page/pet-details.component";
+import { PetEditComponent } from "./pages/pet-edit-page/pet-edit.component";
 
 @NgModule({
   declarations: [
     PetsSearchPage,
     PetCard,
-    PetDetails
+    PetDetails,
+    PetEditComponent
   ],
   imports: [
     CommonModule,

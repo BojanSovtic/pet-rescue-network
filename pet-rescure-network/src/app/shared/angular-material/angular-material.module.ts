@@ -5,6 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [],
@@ -13,14 +15,18 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatIconModule,
     MatCardModule,
     MatToolbarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [
     MatButtonModule,
     MatIconModule,
     MatCardModule,
     MatToolbarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class AngularMaterialModule { }
