@@ -1,5 +1,5 @@
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { map, switchMap } from "rxjs/operators";
+import { catchError, map, switchMap, tap } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
@@ -7,6 +7,7 @@ import { convertObjectToArray } from './../../../shared/util/firebase-utils';
 import { Pet } from "../../../shared/models/pet.model";
 import { environment } from '../../../../environments/environment';
 import * as PetActions from './pets.actions'
+import { of } from "rxjs";
 
 
 @Injectable()
@@ -27,11 +28,22 @@ export class PetsEffects {
       ofType(PetActions.FETCH_PET),
       switchMap((action: { petId: string }) =>
         this.http.get<Pet>(`${environment.firebaseBaseUrl}/pets/${action.petId}.json`).pipe(
-          map((pet: Pet) => PetActions.selectPet({ pet }))
+          map((pet: Pet) => PetActions.selectPet({ pet: { ...pet, id: action.petId } }))
         )
       )
     )
   );
+
+  deletePet$ = createEffect(() => this.actions$.pipe(
+    ofType(PetActions.DELETE_PET),
+    tap(action => console.log('Deleting pet action:', action)),
+    switchMap(((action: { pet: Pet }) =>
+      this.http.delete<Pet>(`${environment.firebaseBaseUrl}/pets/${action.pet.id}.json`).pipe(
+        switchMap(() => of(PetActions.deletePetSuccess({ pet: action.pet }))),
+        catchError(error => of(PetActions.deletePetFailure({ error })))
+      )
+    ))
+  ));
 
 
   constructor(

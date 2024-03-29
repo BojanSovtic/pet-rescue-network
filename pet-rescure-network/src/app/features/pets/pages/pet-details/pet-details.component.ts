@@ -4,6 +4,7 @@ import { Subscription, map } from 'rxjs';
 import { Pet } from '../../../../shared/models/pet.model';
 import { Store } from '@ngrx/store';
 import * as fromApp from './../../../../store/app.reducer';
+import * as PetActions from '../../store/pets.actions'
 
 @Component({
   selector: 'app-pet-details',
@@ -22,6 +23,10 @@ export class PetDetails implements OnInit {
       .subscribe((selectedPet: Pet | null) => {
         this.pet = selectedPet
       });
+  }
+
+  deletePet() {
+    if (this.pet) this.store.dispatch(PetActions.deletePet({ pet: this.pet }));
   }
 
   ngOnDestroy() {

@@ -27,5 +27,9 @@ export const petsReducer = createReducer(
   on(PetsActions.addPet, (state, { pet }) => ({
     ...state,
     pets: [...state.pets, pet]
+  })),
+  on(PetsActions.deletePetSuccess, (state, { pet }) => ({
+    ...state,
+    pets: state.pets.filter((tempPet) => tempPet.id !== pet.id)
   }))
 );

@@ -1,5 +1,9 @@
 <div class="container">
-  <mat-card *ngIf="pet">
+  <div class="d-flex justify-content-between">
+    <button mat-raised-button routerLink="/pets">Go Back</button>
+    <button mat-raised-button (click)="deletePet()">Delete</button>
+  </div>
+  <mat-card *ngIf="pet" class="mt-3">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{ pet.name }}</mat-card-title>
