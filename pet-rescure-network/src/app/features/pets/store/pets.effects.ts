@@ -2,12 +2,12 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, switchMap, tap } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { of } from "rxjs";
 
 import { convertObjectToArray } from './../../../shared/util/firebase-utils';
 import { Pet } from "../../../shared/models/pet.model";
-import { environment } from '../../../../environments/environment';
+import { PetsService } from "../services/pets.service";
 import * as PetActions from './pets.actions'
-import { of } from "rxjs";
 
 
 @Injectable()
@@ -16,7 +16,7 @@ export class PetsEffects {
     this.actions$.pipe(
       ofType(PetActions.FETCH_PETS),
       switchMap(() =>
-        this.http.get<Pet[]>(`${environment.firebaseBaseUrl}/pets.json`).pipe(
+        this.petsService.getPets().pipe(
           map((pets: Pet[]) => PetActions.setPets({ pets: convertObjectToArray(pets) }))
         )
       )
@@ -27,17 +27,27 @@ export class PetsEffects {
     this.actions$.pipe(
       ofType(PetActions.FETCH_PET),
       switchMap((action: { petId: string }) =>
-        this.http.get<Pet>(`${environment.firebaseBaseUrl}/pets/${action.petId}.json`).pipe(
+        this.petsService.getPetById(action).pipe(
           map((pet: Pet) => PetActions.selectPet({ pet: { ...pet, id: action.petId } }))
         )
       )
     )
   );
 
+  addPet$ = createEffect(() => this.actions$.pipe(
+    ofType(PetActions.ADD_PET),
+    switchMap(({ pet }) => {
+      return this.petsService.addPet(pet).pipe(
+        switchMap(() => of(PetActions.addPetSuccess({ pet }))),
+        catchError(error => of(PetActions.addPetFailure({ error })))
+      );
+    })
+  ));
+
   deletePet$ = createEffect(() => this.actions$.pipe(
     ofType(PetActions.DELETE_PET),
     switchMap(((action: { pet: Pet }) =>
-      this.http.delete<Pet>(`${environment.firebaseBaseUrl}/pets/${action.pet.id}.json`).pipe(
+      this.petsService.deletePet(action).pipe(
         switchMap(() => of(PetActions.deletePetSuccess({ pet: action.pet }))),
         catchError(error => of(PetActions.deletePetFailure({ error })))
       )
@@ -47,6 +57,6 @@ export class PetsEffects {
 
   constructor(
     private actions$: Actions,
-    private http: HttpClient,
+    private petsService: PetsService
   ) { }
 }

@@ -24,7 +24,7 @@ export const petsReducer = createReducer(
     ...state,
     selectedPet: { ...pet }
   })),
-  on(PetsActions.addPet, (state, { pet }) => ({
+  on(PetsActions.addPetSuccess, (state, { pet }) => ({
     ...state,
     pets: [...state.pets, pet]
   })),
