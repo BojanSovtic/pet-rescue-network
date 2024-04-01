@@ -1,1 +1,15 @@
-<mat-toolbar>Pet Rescue Network</mat-toolbar>
+<mat-toolbar color="primary" class="d-flex justify-content-around">
+  <span>Pet Rescue Network</span>
+  <span class="spacer"></span>
+  <button mat-button color="accent" *ngIf="!isAuthenticated" (click)="login()">
+    Login
+  </button>
+  <button
+    mat-button
+    color="accent"
+    *ngIf="isAuthenticated"
+    (click)="onLogout()"
+  >
+    Logout
+  </button>
+</mat-toolbar>

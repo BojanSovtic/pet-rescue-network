@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { PetsEffects } from './features/pets/store/pets.effects'
 import * as fromApp from './store/app.reducer';
+import { AuthEffects } from './core/auth/store/auth.effects';
 
 
 
@@ -25,7 +26,7 @@ import * as fromApp from './store/app.reducer';
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([PetsEffects]),
+    EffectsModule.forRoot([PetsEffects, AuthEffects]),
     SharedModule,
     CoreModule
   ],
