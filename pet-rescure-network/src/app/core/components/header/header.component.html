@@ -1,5 +1,7 @@
 <mat-toolbar color="primary" class="d-flex justify-content-around">
-  <span>Pet Rescue Network</span>
+  <span class="cursor-pointer" (click)="navigateHome()"
+    >Pet Rescue Network</span
+  >
   <span class="spacer"></span>
   <button mat-button color="accent" *ngIf="!isAuthenticated" (click)="login()">
     Login

@@ -23,6 +23,10 @@ export class PetsService {
     return this.http.post<Pet>(`${environment.firebaseBaseUrl}/pets.json`, pet);
   }
 
+  editPet(pet: Pet): Observable<Pet> {
+    return this.http.put<Pet>(`${environment.firebaseBaseUrl}/pets/${pet.id}.json`, pet);
+  }
+
   deletePet(payload: { pet: Pet }): Observable<null> {
     return this.http.delete<null>(`${environment.firebaseBaseUrl}/pets/${payload.pet.id}.json`);
   }

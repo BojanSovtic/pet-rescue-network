@@ -28,6 +28,14 @@ export const petsReducer = createReducer(
     ...state,
     pets: [...state.pets, pet]
   })),
+  on(PetsActions.editPetSuccess, (state, { pet }) => {
+    let tempForEdit = state.pets.find((tempPet: Pet) => tempPet.id === pet.id)
+    tempForEdit = { ...pet }
+    return {
+      ...state,
+      pets: [...state.pets, tempForEdit]
+    }
+  }),
   on(PetsActions.deletePetSuccess, (state, { pet }) => ({
     ...state,
     pets: state.pets.filter((tempPet) => tempPet.id !== pet.id)

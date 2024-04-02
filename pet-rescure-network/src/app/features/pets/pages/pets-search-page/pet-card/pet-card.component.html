@@ -3,11 +3,13 @@
     <div class="example-header-image"></div>
     <h5 class="card-title">{{ pet.name }}</h5>
   </div>
-  <img
-    class="card-img-top max-h-30 max-w-48"
-    [src]="pet.imageURL"
-    [alt]="pet.name"
-  />
+  <div *ngFor="let imageURL of pet.imageURLs">
+    <img
+      class="card-img-top max-h-30 max-w-48"
+      [src]="imageURL"
+      [alt]="imageURL"
+    />
+  </div>
   <div class="card-body">
     <p class="card-text">
       {{ pet.description }}

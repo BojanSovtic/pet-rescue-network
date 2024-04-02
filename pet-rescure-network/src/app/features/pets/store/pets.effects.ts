@@ -44,6 +44,16 @@ export class PetsEffects {
     })
   ));
 
+  editPet$ = createEffect(() => this.actions$.pipe(
+    ofType(PetActions.EDIT_PET),
+    switchMap(({ pet }) => {
+      return this.petsService.editPet(pet).pipe(
+        switchMap(() => of(PetActions.editPetSuccess({ pet }))),
+        catchError(error => of(PetActions.editPetFailure({ error })))
+      );
+    })
+  ));
+
   deletePet$ = createEffect(() => this.actions$.pipe(
     ofType(PetActions.DELETE_PET),
     switchMap(((action: { pet: Pet }) =>

@@ -35,6 +35,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.store.dispatch(AuthActions.logout());
   }
 
+  navigateHome() {
+    this.router.navigate(['/'])
+  }
+
   ngOnDestroy() {
     this.userSub.unsubscribe()
   }

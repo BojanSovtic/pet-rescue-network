@@ -75,6 +75,7 @@ export class AuthEffects {
           _tokenExpirationDate: string
         } = JSON.parse(localStorage.getItem('userData')!);
 
+        if (!userData) return { type: 'DUMMY' }
         const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpirationDate));
         if (loadedUser.token) {
           const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
