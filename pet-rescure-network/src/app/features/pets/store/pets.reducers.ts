@@ -38,6 +38,6 @@ export const petsReducer = createReducer(
   }),
   on(PetsActions.deletePetSuccess, (state, { pet }) => ({
     ...state,
-    pets: state.pets.filter((tempPet) => tempPet.id !== pet.id)
+    pets: state.pets.filter((tempPet: Pet) => tempPet.id !== pet.id)
   }))
 );

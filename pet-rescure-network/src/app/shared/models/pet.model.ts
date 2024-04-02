@@ -1,3 +1,5 @@
+import { Contact } from "./contact.model";
+
 export interface Pet {
   id?: string,
   name: string,
@@ -8,11 +10,7 @@ export interface Pet {
   size: string;
   gender: string;
   imageURLs: string[],
-  contact: {
-    email: string;
-    phone: string;
-    address: string;
-  };
+  contact: Contact;
   userId: string,
   shelterId: string;
   shelterName: string;

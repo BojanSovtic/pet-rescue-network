@@ -12,6 +12,7 @@ import { CoreModule } from './core/core.module';
 import { PetsEffects } from './features/pets/store/pets.effects'
 import * as fromApp from './store/app.reducer';
 import { AuthEffects } from './core/auth/store/auth.effects';
+import { SheltersEffects } from './features/shelters/store/shelters.effects';
 
 
 
@@ -26,7 +27,7 @@ import { AuthEffects } from './core/auth/store/auth.effects';
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([PetsEffects, AuthEffects]),
+    EffectsModule.forRoot([PetsEffects, AuthEffects, SheltersEffects]),
     SharedModule,
     CoreModule
   ],

@@ -1,7 +1,7 @@
 import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from "@angular/router";
 
 import { Pet } from "../../../shared/models/pet.model";
-import { Observable, catchError, filter, map, of, take } from "rxjs";
+import { Observable, filter, map, take } from "rxjs";
 import { inject } from "@angular/core";
 import { Store } from "@ngrx/store";
 

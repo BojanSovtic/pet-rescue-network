@@ -27,11 +27,11 @@ export class PetsSearchPage implements OnInit, OnDestroy {
     this.store.dispatch(PetsActions.fetchPets())
   }
 
-  ngOnDestroy() {
-    this.petsSub.unsubscribe()
-  }
-
   selectPet(petId: string) {
     this.router.navigate([`/pets/detail/${petId}`])
+  }
+
+  ngOnDestroy() {
+    this.petsSub.unsubscribe()
   }
 }

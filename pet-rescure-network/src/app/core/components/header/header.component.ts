@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import * as fromApp from '../../../store/app.reducer';
 import * as AuthActions from '../../auth/store/auth.actions'
+import { User } from '../../../shared/models/user.model';
 
 
 @Component({
@@ -14,6 +15,7 @@ import * as AuthActions from '../../auth/store/auth.actions'
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   isAuthenticated: boolean = false;
+  user!: User | null;
 
   private userSub!: Subscription;
 
@@ -24,7 +26,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .pipe(map(authState => authState.user))
       .subscribe(user => {
         this.isAuthenticated = !!user
+        this.user = user
       })
+  }
+
+  addPet() {
+    this.router.navigate(['/pets/new']);
+  }
+
+  addShelter() {
+    this.router.navigate(['/shelters/new']);
   }
 
   login() {

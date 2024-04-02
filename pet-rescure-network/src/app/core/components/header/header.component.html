@@ -1,17 +1,46 @@
-<mat-toolbar color="primary" class="d-flex justify-content-around">
+<mat-toolbar color="primary" class="d-flex">
   <span class="cursor-pointer" (click)="navigateHome()"
     >Pet Rescue Network</span
   >
   <span class="spacer"></span>
-  <button mat-button color="accent" *ngIf="!isAuthenticated" (click)="login()">
-    Login
-  </button>
-  <button
-    mat-button
-    color="accent"
-    *ngIf="isAuthenticated"
-    (click)="onLogout()"
-  >
-    Logout
-  </button>
+
+  <div class="header-buttons">
+    <button
+      class="mb-2"
+      mat-button
+      color="accent"
+      *ngIf="isAuthenticated"
+      (click)="addPet()"
+    >
+      Add new pet
+    </button>
+
+    <button
+      class="mb-2"
+      mat-button
+      color="accent"
+      *ngIf="isAuthenticated"
+      (click)="addShelter()"
+    >
+      Add new shelter
+    </button>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+
+  <mat-menu #menu="matMenu">
+    <div *ngIf="user" class="p-2">
+      <span class="fw-bold">{{ user.email }} </span>
+      <hr />
+    </div>
+
+    <button mat-menu-item *ngIf="!isAuthenticated" (click)="login()">
+      Login
+    </button>
+    <button mat-menu-item *ngIf="isAuthenticated" (click)="onLogout()">
+      Logout
+    </button>
+  </mat-menu>
 </mat-toolbar>
