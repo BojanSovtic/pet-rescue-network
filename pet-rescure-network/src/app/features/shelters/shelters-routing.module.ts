@@ -1,14 +1,14 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { SheltersSearchPage } from "./pages/shelters-search-page/shelters-search-page.component";
-import { SheltersEdit } from "./pages/shelters-edit-page/shelters-edit.component";
 import { shelterResolver } from "./resolvers/shelter.resolver";
+import { SheltersEditComponent } from "./pages/shelters-edit-page/shelters-edit.component";
+import { SheltersSearchPageComponent } from "./pages/shelters-search-page/shelters-search-page.component";
 
 const routes: Routes = [
-  { path: '', component: SheltersSearchPage },
-  { path: ':id', component: SheltersEdit, resolve: [shelterResolver] },
-  { path: 'new', component: SheltersEdit }
+  { path: '', component: SheltersSearchPageComponent },
+  { path: ':id', component: SheltersEditComponent, resolve: [shelterResolver] },
+  { path: 'new', component: SheltersEditComponent }
 ]
 
 @NgModule({

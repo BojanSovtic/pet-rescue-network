@@ -42,6 +42,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['/auth']);
   }
 
+  goToShelters() {
+    this.router.navigate(['/shelters']);
+  }
+
   onLogout() {
     this.store.dispatch(AuthActions.logout());
   }

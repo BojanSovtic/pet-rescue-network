@@ -17,14 +17,14 @@ export const DELETE_SHELTER = '[Shelters] Delete Shelter'
 export const DELETE_SHELTER_SUCCESS = '[Shelters] Delete Shelter Success'
 export const DELETE_SHELTER_FAILURE = '[Shelters] Delete Shelter Failure'
 
-export const fetchShelters = createAction(FETCH_SHELTER);
+export const fetchShelters = createAction(FETCH_SHELTERS);
 export const fetchShelter = createAction(FETCH_SHELTER, props<{ shelterId: string }>());
 export const setShelters = createAction(SET_SHELTERS, props<{ shelters: Shelter[] }>());
 export const selectShelter = createAction(SELECT_SHELTER, props<{ shelter: Shelter }>());
 export const addShelter = createAction(ADD_SHELTER, (props<{ shelter: Shelter }>()));
 export const addShelterSuccess = createAction(ADD_SHELTER_SUCCESS, (props<{ shelter: Shelter }>()));
 export const addShelterFailure = createAction(ADD_SHELTER_FAILURE, (props<{ error: any }>()));
-export const editShelter = createAction(EDIT_SHELTER, (props<{ Shelter: Shelter }>()));
+export const editShelter = createAction(EDIT_SHELTER, (props<{ shelter: Shelter }>()));
 export const editShelterSuccess = createAction(EDIT_SHELTER_SUCCESS, (props<{ shelter: Shelter }>()));
 export const editShelterFailure = createAction(EDIT_SHELTER_FAILURE, (props<{ error: any }>()));
 export const deleteShelter = createAction(DELETE_SHELTER, (props<{ Shelter: Shelter }>()));

@@ -7,4 +7,5 @@ export interface Shelter {
   contact: Contact;
   website: string;
   imageURL: string;
+  userId: string;
 }
